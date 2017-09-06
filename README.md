@@ -174,7 +174,15 @@ To save a docker image
     docker save 199487e8d638 > eureka.tar    
     
     
+#Git
+
+    start up git shell
     
+    git init
+    
+    git add --all
+    
+    git commit -m "first commit"
         
 
                  
