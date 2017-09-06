@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: pupilservice
+  profiles:
+    active:
+      default
+  cloud:
+    config:
+      enabled: false

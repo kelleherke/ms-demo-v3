@@ -1,0 +1,36 @@
+version: '2'
+services:
+  eurekaserver:
+     image:   citadel/tmx-eureka-service:v3
+     ports:
+       - "8761:8761"
+  zuulserver:
+    image: citadel/tmx-zuulsvr:v3
+    ports:
+      - "5555:5555"
+    environment:
+      PROFILE: "default"
+      SERVER_PORT: "5555"
+      EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
+      EUREKASERVER_PORT:        "8761"
+      ENCRYPT_KEY:       "IMSYMMETRIC"
+  addressservice:
+      image: citadel/tmx-address-service:v3
+      ports:
+        - "8085:8085"
+      environment:
+        PROFILE: "default"
+        SERVER_PORT: "8085"
+        EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
+        EUREKASERVER_PORT:   "8761"
+        ENCRYPT_KEY:       "IMSYMMETRIC"
+  pupilservice:
+      image: citadel/tmx-pupil-service:v3
+      ports:
+        - "8086:8086"
+      environment:
+        PROFILE: "default"
+        SERVER_PORT: "8086"
+        EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
+        EUREKASERVER_PORT:   "8761"
+        ENCRYPT_KEY:       "IMSYMMETRIC"
